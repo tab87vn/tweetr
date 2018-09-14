@@ -21,7 +21,7 @@ Route.get('/', () => {
 
 
 Route.get('/signup', 'UserController.signup')
-Route.get('/login', 'UserCotroller.login')
+Route.get('/login', 'UserController.login')
 Route.group(() => {
   Route.get('/me', 'UserController.me')
   Route.put('/update_profile', 'UserController.updateProfile')
