@@ -39,3 +39,7 @@ Route.group(() => {
   .middleware(['auth:jwt'])
  Route.get(':username', 'UserController.showProfile')
 
+// routes for tweets
+Route.post('/tweet', 'TweetController.tweet').middleware(['auth:jwt']) // only authenticated user can make tweets
+Route.get('/tweets/:id', 'TweetController.show')
+Route.post('/tweets/reply/:id', 'TweetController.reply').middleware(['auth:jwt'])
