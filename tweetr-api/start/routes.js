@@ -43,3 +43,12 @@ Route.group(() => {
 Route.post('/tweet', 'TweetController.tweet').middleware(['auth:jwt']) // only authenticated user can make tweets
 Route.get('/tweets/:id', 'TweetController.show')
 Route.post('/tweets/reply/:id', 'TweetController.reply').middleware(['auth:jwt'])
+Route.delete('/tweets/destroy/:id', 'TweetController.destroy').middleware(['auth:jwt'])
+
+// routes for favourite
+Route.group(() => {
+  Route.post('/create', 'FavoriteController.favorite')
+  Route.delete('/destroy/:id', 'FavoriteController.favorite')
+})
+.prefix('favorites')
+.middleware(['auth:jwt'])

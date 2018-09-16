@@ -66,8 +66,22 @@ class TweetController {
             data: reply,
             message: 'Reply posted'
         })
+    }
 
+    async destroy({params, auth, response}) {
+        let user = auth.current.user
+        let tweetId = params.id
+        await Tweet.query()
+            .where('id', tweetId)
+            .where('user_id', user.id)
+            .firstOrFail()
+            .delete()
 
+        return response.json({
+            status: 'success',
+            message: "Tweet deleted successfuly!",
+            data: null
+        })
     }
 
 }
